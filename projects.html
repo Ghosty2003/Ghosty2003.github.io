@@ -6,6 +6,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
+			#main {
+				padding-top: 3em;
+			}
+			#header h1 br {
+				display: inline !important;
+			}
 			.tab-nav {
 				display: flex;
 				gap: 0;
@@ -88,6 +94,38 @@
 				object-fit: cover;
 				object-position: center;
 			}
+			.research-list {
+				display: flex;
+				flex-direction: column;
+			}
+			.research-item {
+				display: block;
+				padding: 1.4em 0;
+				border-bottom: 1px solid #ddd;
+			}
+			.research-item:first-child {
+				padding-top: 0;
+			}
+			.research-item:last-child {
+				border-bottom: none;
+			}
+			.research-item h3 {
+				font-size: 1em;
+				margin: 0 0 0.5em 0;
+			}
+			a.research-item:hover h3 {
+				color: #8b6346;
+			}
+			.research-item p {
+				font-size: 0.85em;
+				line-height: 1.6em;
+				margin: 0;
+				color: #777;
+			}
+			.research-item p.role {
+				margin: 0.6em 0 0 0;
+				color: #aaa;
+			}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -96,9 +134,8 @@
 		<header id="header">
 			<div class="inner">
 				<a href="index.html" class="image avatar"><img src="images/avatar.jpg" alt="Chenming Ge" /></a>
-				<h1><strong>I'm Chenming Ge</strong>,<br />
-				MS student in Robotics &amp; Innovation<br />
-				at University of Washington.</h1>
+				<h1><strong>I'm Chenming Ge</strong><br />
+				An MSTI (Robotics) student at University of Washington.</h1>
 			</div>
 		</header>
 
@@ -121,6 +158,14 @@
 					<div class="row">
 
 						<article class="col-6 col-12-xsmall work-item">
+							<a href="https://github.com/Ghosty2003/Automated-Workstation-Reset" target="_blank" class="card-link">
+								<span class="image fit"><img src="images/thumbs/08.jpg" alt="Automated Workstation Reset" /></span>
+								<h3>Automated Workstation Reset — Bimanual Robot Tool Sorting</h3>
+								<p>Bimanual SO-101 system that detects loose tools with YOLOv8m + RealSense and returns them to designated bins, automating the "Sort" step of industrial 5S. MoveIt IK planning paired with per-arm ACT-trained grasp policies. (Spring 2026, UW TECHIN 517)</p>
+							</a>
+						</article>
+
+						<article class="col-6 col-12-xsmall work-item">
 							<a href="https://github.com/Ghosty2003/Tech516-BuddyBot" target="_blank" class="card-link">
 								<span class="image fit"><img src="images/thumbs/01.jpg" alt="BuddyBot" /></span>
 								<h3>BuddyBot — Intelligent Delivery Robot</h3>
@@ -137,18 +182,18 @@
 						</article>
 
 						<article class="col-6 col-12-xsmall work-item">
-							<a href="https://github.com/Ghosty2003/Sensor512Fin" target="_blank" class="card-link">
-								<span class="image fit"><img src="images/thumbs/03.jpg" alt="The Devour" /></span>
-								<h3>The Devour — Hardware-Integrated Game</h3>
-								<p>CircuitPython survival game on ESP32 integrating accelerometer motion control, rotary encoder input, OLED display, NeoPixel LEDs, buzzer feedback, persistent high-score storage, and a custom 3D-printed enclosure.</p>
+							<a href="https://aquacal-mq028ly.gamma.site/" target="_blank" class="card-link">
+								<span class="image fit"><img src="images/thumbs/07.jpg" alt="AquaCal" /></span>
+								<h3>AquaCal — Intelligent Auto-Watering System</h3>
+								<p>Integrated auto-watering system that turns plant care into an effortless experience: a visible watering calendar, sensor-driven optimal hydration, and remote app control. The entire vase is 3D-printed, wrapped in a custom-molded silicone skin for waterproofing.</p>
 							</a>
 						</article>
 
 						<article class="col-6 col-12-xsmall work-item">
-							<a href="https://github.com/Micro-Foodie/Foodie" target="_blank" class="card-link">
-								<span class="image fit"><img src="images/thumbs/04.jpg" alt="Foodie Forum" /></span>
-								<h3>Foodie Forum — Microservices Community</h3>
-								<p>Food-sharing community built with Spring Boot microservices (auth, articles, recipes) and a Vue.js frontend. Designed the personal profile UI/UX in Figma and implemented full front-to-back.</p>
+							<a href="https://github.com/Ghosty2003/Sensor512Fin" target="_blank" class="card-link">
+								<span class="image fit"><img src="images/thumbs/03.jpg" alt="The Devour" /></span>
+								<h3>The Devour — Hardware-Integrated Game</h3>
+								<p>CircuitPython survival game on ESP32 integrating accelerometer motion control, rotary encoder input, OLED display, NeoPixel LEDs, buzzer feedback, persistent high-score storage, and a custom 3D-printed enclosure.</p>
 							</a>
 						</article>
 
@@ -157,39 +202,29 @@
 
 				<!-- Research Tab -->
 				<div id="tab-research" class="tab-panel">
-					<div class="row">
+					<div class="research-list">
 
-						<article class="col-6 col-12-xsmall work-item">
-							<div class="card-link">
-								<span class="image fit"><img src="images/thumbs/05.jpg" alt="Robot Disambiguation" /></span>
-								<h3>Personalized Robot Disambiguation based on User State</h3>
-								<p>Neural Reward Model recalibrating "Ask/Wait/Act" autonomy based on real-time emotional states. RLHF Decision Module via DPO learns optimal interaction strategies from human feedback. (Jan.–Mar. 2026, UW)</p>
-							</div>
-						</article>
+						<a href="https://arxiv.org/abs/2605.07061" target="_blank" class="research-item">
+							<h3>AV-Phys Bench: A Benchmark for Physical Commonsense in Joint Audio-Video Generation</h3>
+							<p>AV-Phys Bench evaluates whether joint audio-video generation models understand real-world physics, rather than just producing plausible-looking sounds and frames. It tests seven models across Steady State, Event Transition, and Environment Transition scenes on five dimensions of semantic and physical commonsense. (arXiv:2605.07061)</p>
+							<p class="role">My contribution: Helped design the benchmark's evaluation categories and rubrics, and led data collection and annotation verification across the three scene categories.</p>
+						</a>
 
-						<article class="col-6 col-12-xsmall work-item">
-							<div class="card-link">
-								<span class="image fit"><img src="images/thumbs/06.jpg" alt="HOI Detection" /></span>
-								<h3>Long-tail Bias Mitigation in HOI Detection</h3>
-								<p>Training framework on QPIC Transformer for Human-Object Interaction detection. ATL-inspired parameter enhancement + pseudo-labeling boosted mAP by 1.6% and tail-class accuracy by 5.1%–6.3% on V-COCO. (Dec. 2024–May 2025, Tongji)</p>
-							</div>
-						</article>
+						<a href="https://www.researchgate.net/publication/372214848_Algorithm_structure_for_real-time_general_game_playing_agents" target="_blank" class="research-item">
+							<h3>Algorithm Structure for Real-time General Game Playing Agents</h3>
+							<p>General Game Playing studies AI agents that play unfamiliar games by reading only the rules at runtime, with no human intervention. Prior work has focused on turn-based games using generic heuristics or Monte Carlo/UCT search, but real-time games now dominate the market. This paper evaluates whether existing GGP algorithms can be adapted to real-time play and proposes a dual-server (strategy + acting) architecture to close the gap.</p>
+							<p class="role">My contribution: Sole author. Conducted the literature review and proposed the dual-server architecture, improving breadth and efficiency to better mimic human performance.</p>
+						</a>
 
-						<article class="col-6 col-12-xsmall work-item">
-							<div class="card-link">
-								<span class="image fit"><img src="images/thumbs/05.jpg" alt="Joyhack" /></span>
-								<h3>Exploring Joyhack in Games Using AI NPCs</h3>
-								<p>User study on how players tamper with AI NPCs using observational methods and semi-structured interviews on the "Suck Up" game. Analyzed player expectations to guide future AI NPC research. (Jan.–Sept. 2024, UC Berkeley)</p>
-							</div>
-						</article>
+						<div class="research-item">
+							<h3>Long-tail Bias Mitigation in HOI Detection</h3>
+							<p>Training framework on QPIC Transformer for Human-Object Interaction detection. ATL-inspired parameter enhancement + pseudo-labeling boosted mAP by 1.6% and tail-class accuracy by 5.1%–6.3% on V-COCO. (Dec. 2024–May 2025, Tongji)</p>
+						</div>
 
-						<article class="col-6 col-12-xsmall work-item">
-							<a href="https://www.researchgate.net/publication/372214848_Algorithm_structure_for_real-time_general_game_playing_agents" target="_blank" class="card-link">
-								<span class="image fit"><img src="images/thumbs/06.jpg" alt="Game AI" /></span>
-								<h3>Algorithm Structure for Real-time General Game Playing Agents</h3>
-								<p>Literature review and proposal of a dual-server (strategy + acting) architecture for real-time general game playing agents, improving breadth and efficiency to better mimic human performance.</p>
-							</a>
-						</article>
+						<div class="research-item">
+							<h3>Exploring Joyhack in Games Using AI NPCs</h3>
+							<p>User study on how players tamper with AI NPCs using observational methods and semi-structured interviews on the "Suck Up" game. Analyzed player expectations to guide future AI NPC research. (Jan.–Sept. 2024, UC Berkeley)</p>
+						</div>
 
 					</div>
 				</div>
