@@ -43,48 +43,51 @@
 				color: #aaa;
 			}
 			#background .block + .block {
-				margin-top: 2.5em;
+				border-top: 1px solid #ddd;
+				margin-top: 1.25em;
+				padding-top: 1.25em;
 			}
-			.line-list {
-				list-style: none;
+			#background .block header.major {
+				margin: 0 0 0.5em 0;
+			}
+			#background .block header.major h2 {
 				margin: 0;
-				padding: 0;
 			}
-			.line-list li {
+			#background #skills > p {
+				margin: 0 0 0.6em 0;
+			}
+			#background .block + .block header.major h2 {
+				font-size: 1.5em;
+			}
+			#background .item + .item {
+				margin-top: 0.8em;
+			}
+			#background .item-head {
 				display: flex;
 				flex-wrap: wrap;
 				justify-content: space-between;
-				gap: 0.25em 1.5em;
-				padding: 0.8em 0;
-				border-bottom: 1px solid #ddd;
+				gap: 0 1.5em;
+				font-size: 0.95em;
+				color: #555;
+			}
+			#background .item-head .when {
+				color: #aaa;
+				font-size: 0.85em;
+				white-space: nowrap;
+			}
+			#background .item p,
+			#background .item li {
 				font-size: 0.85em;
 				line-height: 1.6em;
 				color: #777;
+				margin: 0 0 0.2em 0;
 			}
-			.line-list li:first-child {
-				padding-top: 0;
+			#background .item ul {
+				margin: 0.3em 0 0 0;
+				padding-left: 1.2em;
 			}
-			.line-list li:last-child {
-				border-bottom: none;
-			}
-			.line-list strong {
+			#background .item strong {
 				color: #555;
-			}
-			.line-list .when {
-				color: #aaa;
-				white-space: nowrap;
-			}
-			#background .block header.major {
-				margin: 0 0 1em 0;
-			}
-			#background .entry {
-				padding: 0.9em 0;
-			}
-			#background .entry:first-child {
-				padding-top: 0;
-			}
-			#background .block p {
-				margin-bottom: 0.5em;
 			}
 			.entry h3 + p.meta {
 				margin-top: 0;
@@ -201,18 +204,29 @@
 							<header class="major">
 								<h2>Education</h2>
 							</header>
-							<ul class="line-list">
-								<li><span><strong>University of Washington</strong>, M.S. in Technology Innovation (Robotics Track), GPA 3.83/4</span><span class="when">Sep 2025 to Mar 2027</span></li>
-								<li><span><strong>Tongji University</strong>, B.S. in Software Engineering, GPA 88.25/100</span><span class="when">Sep 2021 to Jun 2025</span></li>
-							</ul>
+							<div class="item">
+								<div class="item-head"><strong>University of Washington</strong><span class="when">Sep 2025 to Mar 2027</span></div>
+								<p>M.S. in Technology Innovation (Robotics Track), GPA 3.83/4</p>
+								<p><strong>Courses:</strong> Managing Data and Signal Processing, Robotic Sensing and Mobility, Neuroscience (NEUSCI 401)</p>
+							</div>
+							<div class="item">
+								<div class="item-head"><strong>Tongji University</strong><span class="when">Sep 2021 to Jun 2025</span></div>
+								<p>B.S. in Software Engineering, GPA 88.25/100</p>
+								<p><strong>Courses:</strong> Linear Algebra, Probability and Mathematical Statistics, Statistics Analysis and Modeling, Data Structures, Computer Graphics</p>
+							</div>
 						</div>
 						<div class="block" id="experience">
 							<header class="major">
 								<h2>Experience</h2>
 							</header>
-							<ul class="line-list">
-								<li><span><strong>Timeplus, Shanghai</strong>, Backend Development Intern, C++ core engine of the Proton streaming database</span><span class="when">Jul 2024 to Feb 2025</span></li>
-							</ul>
+							<div class="item">
+								<div class="item-head"><strong>Timeplus, Shanghai</strong><span class="when">Jul 2024 to Feb 2025</span></div>
+								<p>Backend Development Intern</p>
+								<ul>
+									<li>Developed the C++ core engine of Proton, a real-time streaming database for high-throughput, low-latency data processing, extending the streaming type system with 6 new data types and ensuring compatibility across 48 streaming aggregation functions.</li>
+									<li>Resolved 3 long-standing bugs in distributed streaming storage, including merge-operation failures and data consistency issues between real-time insertion and query results.</li>
+								</ul>
+							</div>
 						</div>
 						<div class="block" id="skills">
 							<header class="major">
