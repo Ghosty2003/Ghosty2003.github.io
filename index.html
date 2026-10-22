@@ -11,6 +11,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
+			#header h1 br {
+				display: inline !important;
+			}
 			.entry-list {
 				display: flex;
 				flex-direction: column;
@@ -39,20 +42,35 @@
 				margin: 0.6em 0 0 0;
 				color: #aaa;
 			}
+			#background .block + .block {
+				margin-top: 1.75em;
+			}
+			#background .block header.major {
+				margin: 0 0 1em 0;
+			}
+			#background .entry {
+				padding: 0.9em 0;
+			}
+			#background .entry:first-child {
+				padding-top: 0;
+			}
+			#background .block p {
+				margin-bottom: 0.5em;
+			}
 			.entry h3 + p.meta {
 				margin-top: 0;
 			}
-			#skills .skills-also {
+			#background .skills-also {
 				font-size: 0.85em;
 				color: #777;
 			}
 			/* Page-by-page scrolling with fade in/out (desktop) */
-			.js #main > section {
+			.js #main > section > * {
 				opacity: 0;
 				transform: translateY(2em);
 				transition: opacity 0.7s ease, transform 0.7s ease;
 			}
-			.js #main > section.in-view {
+			.js #main > section.in-view > * {
 				opacity: 1;
 				transform: none;
 			}
@@ -67,15 +85,26 @@
 					padding-top: 0;
 					padding-bottom: 0;
 				}
-				#main > section {
+				#background {
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					column-gap: 3em;
+					align-content: start;
+				}
+				#background .block + .block {
+					margin-top: 0;
+				}
+				#background #skills {
+					grid-column: 1 / -1;
+					margin-top: 2em;
+				}
+				#main > section,
+				#main > section:first-child {
 					border-top: 0;
 					margin: 0;
-					padding: 4em 0;
+					padding: 11vh 0 3em 0;
 					min-height: 100vh;
 					box-sizing: border-box;
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
 					scroll-snap-align: start;
 					scroll-snap-stop: always;
 				}
@@ -111,7 +140,7 @@
 				}
 			}
 			@media (prefers-reduced-motion: reduce) {
-				.js #main > section {
+				.js #main > section > * {
 					opacity: 1;
 					transform: none;
 					transition: none;
@@ -129,8 +158,8 @@
 			<header id="header">
 				<div class="inner">
 					<a href="#" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
-					<h1><strong>I'm Chenming Ge</strong>,<br />
-					an MSTI (Robotics) student at University of Washington.</h1>
+					<h1><strong>I'm Chenming Ge</strong><br />
+					An MSTI (Robotics) student at University of Washington.</h1>
 				</div>
 			</header>
 
@@ -150,8 +179,9 @@
 						</ul>
 					</section>
 
-				<!-- Education -->
-					<section id="education">
+				<!-- Education, Experience, Skills -->
+					<section id="background">
+						<div class="block" id="education">
 						<header class="major">
 							<h2>Education</h2>
 						</header>
@@ -167,6 +197,31 @@
 								<p class="meta">Sep 2021 to Jun 2025</p>
 							</div>
 						</div>
+					</div>
+						<div class="block" id="experience">
+						<header class="major">
+							<h2>Experience</h2>
+						</header>
+						<div class="entry-list">
+							<div class="entry">
+								<h3>Timeplus, Shanghai. Backend Development Intern</h3>
+								<p>Worked on the C++ core engine of the Proton streaming database.</p>
+								<p class="meta">Jul 2024 to Feb 2025</p>
+							</div>
+						</div>
+					</div>
+						<div class="block" id="skills">
+						<header class="major">
+							<h2>Skills</h2>
+						</header>
+						<p>
+							<strong>Languages:</strong> C++, Python &nbsp;|&nbsp;
+							<strong>ML:</strong> PyTorch, scikit-learn, world models, RL and imitation learning &nbsp;|&nbsp;
+							<strong>Robotics:</strong> ROS2, LeRobot, Isaac Lab, NVIDIA Jetson &nbsp;|&nbsp;
+							<strong>Tools:</strong> Docker, Git
+						</p>
+						<p class="skills-also"><strong>Also:</strong> Java, C#, JavaScript, CUDA, MoveIt, Fusion 360</p>
+					</div>
 					</section>
 
 				<!-- Publications -->
@@ -196,43 +251,13 @@
 						</div>
 					</section>
 
-				<!-- Experience -->
-					<section id="experience">
-						<header class="major">
-							<h2>Experience</h2>
-						</header>
-						<div class="entry-list">
-							<div class="entry">
-								<h3>Timeplus, Shanghai. Backend Development Intern</h3>
-								<p>Worked on the C++ core engine of the Proton streaming database.</p>
-								<p class="meta">Jul 2024 to Feb 2025</p>
-							</div>
-						</div>
-					</section>
-
-				<!-- Skills -->
-					<section id="skills">
-						<header class="major">
-							<h2>Skills</h2>
-						</header>
-						<p>
-							<strong>Languages:</strong> C++, Python &nbsp;|&nbsp;
-							<strong>ML:</strong> PyTorch, scikit-learn, world models, RL and imitation learning &nbsp;|&nbsp;
-							<strong>Robotics:</strong> ROS2, LeRobot, Isaac Lab, NVIDIA Jetson &nbsp;|&nbsp;
-							<strong>Tools:</strong> Docker, Git
-						</p>
-						<p class="skills-also"><strong>Also:</strong> Java, C#, JavaScript, CUDA, MoveIt, Fusion 360</p>
-					</section>
-
 			</div>
 
 		<!-- Page dots -->
 			<nav id="page-dots" aria-label="Sections">
 				<a href="#one" title="About"></a>
-				<a href="#education" title="Education"></a>
+				<a href="#background" title="Education, Experience and Skills"></a>
 				<a href="#publications" title="Publications"></a>
-				<a href="#experience" title="Experience"></a>
-				<a href="#skills" title="Skills"></a>
 			</nav>
 
 		<!-- Footer -->
