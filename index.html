@@ -46,7 +46,82 @@
 				font-size: 0.85em;
 				color: #777;
 			}
+			/* Page-by-page scrolling with fade in/out (desktop) */
+			.js #main > section {
+				opacity: 0;
+				transform: translateY(2em);
+				transition: opacity 0.7s ease, transform 0.7s ease;
+			}
+			.js #main > section.in-view {
+				opacity: 1;
+				transform: none;
+			}
+			#page-dots {
+				display: none;
+			}
+			@media screen and (min-width: 981px) {
+				html {
+					scroll-snap-type: y mandatory;
+				}
+				#main {
+					padding-top: 0;
+					padding-bottom: 0;
+				}
+				#main > section {
+					border-top: 0;
+					margin: 0;
+					padding: 4em 0;
+					min-height: 100vh;
+					box-sizing: border-box;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					scroll-snap-align: start;
+					scroll-snap-stop: always;
+				}
+				#page-dots {
+					display: flex;
+					flex-direction: column;
+					gap: 0.9em;
+					position: fixed;
+					right: 1.5em;
+					top: 50%;
+					transform: translateY(-50%);
+					z-index: 10;
+				}
+				#page-dots a {
+					display: block;
+					width: 0.65em;
+					height: 0.65em;
+					border-radius: 50%;
+					border: 2px solid #8b6346;
+					background: transparent;
+					transition: background 0.3s;
+				}
+				#page-dots a.active {
+					background: #8b6346;
+				}
+			}
+			@media screen and (max-width: 980px) {
+				html {
+					scroll-snap-type: y proximity;
+				}
+				#main > section {
+					scroll-snap-align: start;
+				}
+			}
+			@media (prefers-reduced-motion: reduce) {
+				.js #main > section {
+					opacity: 1;
+					transform: none;
+					transition: none;
+				}
+				html {
+					scroll-behavior: auto;
+				}
+			}
 		</style>
+		<script>document.documentElement.className += " js";</script>
 	</head>
 	<body class="is-preload">
 
@@ -151,6 +226,15 @@
 
 			</div>
 
+		<!-- Page dots -->
+			<nav id="page-dots" aria-label="Sections">
+				<a href="#one" title="About"></a>
+				<a href="#education" title="Education"></a>
+				<a href="#publications" title="Publications"></a>
+				<a href="#experience" title="Experience"></a>
+				<a href="#skills" title="Skills"></a>
+			</nav>
+
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="inner">
@@ -171,6 +255,29 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+	
+			<script>
+				(function() {
+					var sections = document.querySelectorAll('#main > section');
+					var dots = document.querySelectorAll('#page-dots a');
+					if (!('IntersectionObserver' in window)) {
+						sections.forEach(function(el) { el.classList.add('in-view'); });
+						return;
+					}
+					var io = new IntersectionObserver(function(entries) {
+						entries.forEach(function(e) {
+							e.target.classList.toggle('in-view', e.isIntersecting);
+							if (e.isIntersecting) {
+								dots.forEach(function(d) {
+									d.classList.toggle('active', d.getAttribute('href') === '#' + e.target.id);
+								});
+							}
+						});
+					}, { rootMargin: '-35% 0px -35% 0px' });
+					sections.forEach(function(el) { io.observe(el); });
+				})();
+			</script>
 
 	</body>
 </html>
