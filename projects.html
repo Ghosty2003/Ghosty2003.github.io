@@ -8,6 +8,7 @@
 		<style>
 			#main {
 				padding-top: 3em;
+				max-width: none;
 			}
 			#header h1 br {
 				display: inline !important;
@@ -99,8 +100,10 @@
 				flex-direction: column;
 			}
 			.research-item {
-				display: block;
-				padding: 1.4em 0;
+				display: flex;
+				gap: 1.75em;
+				align-items: center;
+				padding: 1.6em 0;
 				border-bottom: 1px solid #ddd;
 			}
 			.research-item:first-child {
@@ -109,12 +112,52 @@
 			.research-item:last-child {
 				border-bottom: none;
 			}
+			.research-item .thumb {
+				position: relative;
+				flex: 0 0 clamp(18em, 28%, 28em);
+				aspect-ratio: 1300 / 731;
+				background: #fff;
+				border-radius: 6px;
+				border: 1px solid rgba(195, 176, 145, 0.7);
+				box-shadow: 0 12px 28px rgba(176, 150, 104, 0.5), 0 3px 8px rgba(140, 115, 70, 0.3);
+				overflow: hidden;
+				transition: box-shadow 0.25s, transform 0.25s;
+			}
+			.research-item .thumb img {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+			.research-item .thumb img.contain {
+				object-fit: contain;
+			}
+			.research-item:hover .thumb {
+				transform: translateY(-2px);
+				box-shadow: 0 16px 34px rgba(176, 150, 104, 0.6), 0 4px 10px rgba(140, 115, 70, 0.35);
+			}
+			.research-item .thumb .badge {
+				position: absolute;
+				top: 0.6em;
+				left: 0;
+				z-index: 1;
+				padding: 0.3em 0.8em;
+				font-size: 0.7em;
+				font-weight: 600;
+				letter-spacing: 0.04em;
+				color: #fff;
+				background: #8b6346;
+				box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+			}
+			.research-item .body {
+				flex: 1;
+				min-width: 0;
+			}
 			.research-item h3 {
 				font-size: 1em;
 				margin: 0 0 0.5em 0;
-			}
-			a.research-item:hover h3 {
-				color: #8b6346;
 			}
 			.research-item p {
 				font-size: 0.85em;
@@ -125,6 +168,40 @@
 			.research-item p.role {
 				margin: 0.6em 0 0 0;
 				color: #aaa;
+			}
+			.research-item .links {
+				margin-top: 0.7em;
+				font-size: 0.75em;
+				color: #aaa;
+			}
+			.research-item .links a {
+				display: inline-block;
+				margin: 0 0.4em 0 0;
+				padding: 0.1em 0.7em;
+				border: 1px solid #999;
+				border-radius: 2px;
+				color: #666;
+				line-height: 1.6em;
+				transition: color 0.2s, border-color 0.2s;
+			}
+			.research-item .links a:hover {
+				color: #8b6346;
+				border-color: #8b6346;
+			}
+			.research-item .links-label {
+				margin-right: 0.4em;
+			}
+			@media screen and (max-width: 736px) {
+				.research-item {
+					flex-direction: column;
+					align-items: stretch;
+					gap: 1em;
+				}
+				.research-item .thumb {
+					flex: none;
+					width: 100%;
+					aspect-ratio: 1300 / 731;
+				}
 			}
 		</style>
 	</head>
@@ -155,46 +232,53 @@
 
 				<!-- Projects Tab -->
 				<div id="tab-projects" class="tab-panel active">
-					<div class="row">
+					<div class="research-list">
 
-						<article class="col-6 col-12-xsmall work-item">
-							<a href="https://github.com/Ghosty2003/Automated-Workstation-Reset" target="_blank" class="card-link">
-								<span class="image fit"><img src="images/thumbs/08.jpg" alt="Dual-Arm Robotic Workspace Tidying System" /></span>
+						<article class="research-item">
+							<div class="thumb"><span class="badge">Ongoing</span><img src="images/projects/dualarm.jpg" alt="Two yellow SO-101 robotic arms on a workbench with a rack of tools" /></div>
+							<div class="body">
 								<h3>Dual-Arm Robotic Workspace Tidying System</h3>
-								<p>Bimanual SO-101 system that detects loose tools with YOLOv8m + RealSense and returns them to designated bins, automating the "Sort" step of industrial 5S. MoveIt IK planning paired with per-arm ACT-trained grasp policies. (Mar 2026 to present, team lead, UW TECHIN 517)</p>
-							</a>
+								<p>Bimanual SO-101 system that detects loose tools with YOLOv8m + RealSense and returns them to designated bins, automating the "Sort" step of industrial 5S. MoveIt IK planning paired with per-arm ACT-trained grasp policies.</p>
+								<p class="role">Mar 2026 to present, team lead, UW TECHIN 517.</p>
+								<div class="links"><a href="https://github.com/Ghosty2003/Automated-Workstation-Reset" target="_blank">Code</a></div>
+							</div>
 						</article>
 
-						<article class="col-6 col-12-xsmall work-item">
-							<a href="https://github.com/Ghosty2003/Taro" target="_blank" class="card-link">
-								<span class="image fit"><img src="images/thumbs/02.jpg" alt="MuSHR" /></span>
+						<article class="research-item">
+							<div class="thumb"><span class="badge">2025</span><img src="images/projects/mushr.jpg" alt="A small MuSHR autonomous car driving across a carpeted floor" /></div>
+							<div class="body">
 								<h3>MuSHR: Full-Stack Autonomous Navigation</h3>
-								<p>Full-stack self-driving system on NVIDIA Jetson Orin + ROS. Implements particle-filter localization (LiDAR + odometry), Halton-sampled roadmap with Lazy A*, Dubins Path planning, and MPC real-time control. (Oct to Dec 2025)</p>
-							</a>
+								<p>Full-stack self-driving system on NVIDIA Jetson Orin + ROS. Implements particle-filter localization (LiDAR + odometry), Halton-sampled roadmap with Lazy A*, Dubins Path planning, and MPC real-time control.</p>
+								<p class="role">Oct to Dec 2025.</p>
+								<div class="links"><a href="https://github.com/Ghosty2003/Taro" target="_blank">Code</a></div>
+							</div>
 						</article>
-					
-						<article class="col-6 col-12-xsmall work-item">
-							<a href="https://github.com/Ghosty2003/Tech516-BuddyBot" target="_blank" class="card-link">
-								<span class="image fit"><img src="images/thumbs/01.jpg" alt="BuddyBot" /></span>
+
+						<article class="research-item">
+							<div class="thumb"><img src="images/projects/buddybot.jpg" alt="The yellow body of BuddyBot, a delivery robot, with a camera mounted on its front" /></div>
+							<div class="body">
 								<h3>BuddyBot: Intelligent Delivery Robot</h3>
 								<p>ROS2-based human-following robot on Turtlebot3 using YOLO + MediaPipe for real-time tracking and gesture-driven FSM control.</p>
-							</a>
+								<div class="links"><a href="https://github.com/Ghosty2003/Tech516-BuddyBot" target="_blank">Code</a></div>
+							</div>
 						</article>
 
-						<article class="col-6 col-12-xsmall work-item">
-							<a href="https://aquacal-mq028ly.gamma.site/" target="_blank" class="card-link">
-								<span class="image fit"><img src="images/thumbs/07.jpg" alt="AquaCal" /></span>
+						<article class="research-item">
+							<div class="thumb"><img src="images/projects/aquacal.jpg" alt="The AquaCal auto-watering vase, a white 3D-printed planter holding a leafy plant" /></div>
+							<div class="body">
 								<h3>AquaCal: Intelligent Auto-Watering System</h3>
 								<p>Auto-watering vase with a visible watering calendar, sensor-driven hydration, and remote app control. 3D-printed body wrapped in a custom-molded silicone skin.</p>
-							</a>
+								<div class="links"><a href="https://aquacal-mq028ly.gamma.site/" target="_blank">Project page</a></div>
+							</div>
 						</article>
 
-						<article class="col-6 col-12-xsmall work-item">
-							<a href="https://github.com/Ghosty2003/Sensor512Fin" target="_blank" class="card-link">
-								<span class="image fit"><img src="images/thumbs/03.jpg" alt="The Devour" /></span>
+						<article class="research-item">
+							<div class="thumb"><img src="images/projects/devour.jpg" alt="The Devour game console, a translucent 3D-printed enclosure with a joystick and a small OLED screen" /></div>
+							<div class="body">
 								<h3>The Devour: Hardware-Integrated Game</h3>
 								<p>CircuitPython survival game on ESP32 with accelerometer motion control, OLED display, NeoPixel LEDs, and a custom 3D-printed enclosure.</p>
-							</a>
+								<div class="links"><a href="https://github.com/Ghosty2003/Sensor512Fin" target="_blank">Code</a></div>
+							</div>
 						</article>
 
 					</div>
@@ -202,15 +286,21 @@
 					<h3 class="section-title">Other Projects</h3>
 					<div class="research-list">
 
-						<div class="research-item">
-							<h3>Exploring Joyhack in Games Using AI NPCs</h3>
-							<p>User study of how players tamper with AI NPCs in the game "Suck Up", using observational methods and semi-structured interviews. (Jan to Sept 2024, UC Berkeley)</p>
-						</div>
+						<article class="research-item">
+							<div class="body">
+								<h3>Exploring Joyhack in Games Using AI NPCs</h3>
+								<p>User study of how players tamper with AI NPCs in the game "Suck Up", using observational methods and semi-structured interviews.</p>
+								<p class="role">Jan to Sept 2024, UC Berkeley.</p>
+							</div>
+						</article>
 
-						<div class="research-item">
-							<h3>Web3D Remote Model Transmission and Rendering</h3>
-							<p>Remote transmission and rendering of 3D models on the web. Second Prize, Chinasoft Excellence Cup 2023. (2023, Smart3D Lab, Tongji University)</p>
-						</div>
+						<article class="research-item">
+							<div class="body">
+								<h3>Web3D Remote Model Transmission and Rendering</h3>
+								<p>Remote transmission and rendering of 3D models on the web. Second Prize, Chinasoft Excellence Cup 2023.</p>
+								<p class="role">2023, Smart3D Lab, Tongji University.</p>
+							</div>
+						</article>
 
 					</div>
 				</div>
@@ -219,47 +309,75 @@
 				<div id="tab-research" class="tab-panel">
 					<div class="research-list">
 
-						<div class="research-item">
-							<h3>TACT: Tracking Asking Cost over Time for Personalized Clarification</h3>
-							<p>Robots facing ambiguous instructions must decide whether to ask or act, and prior work treats the human cost of asking as a constant. TACT learns this cost as a function of user state (emotion, time, habits) from implicit interaction feedback, never querying users about their preferences, and distills it into a DPO clarification policy with a lightweight head over a frozen language model. Evaluated on a ground-truth-controlled benchmark and ten simulated users.</p>
-							<p class="role">Jan 2026 to present, first author. Manuscript in preparation. <a href="https://github.com/Ghosty2003/TACT" target="_blank">Code</a></p>
-						</div>
+												<article class="research-item">
+							<div class="thumb"><span class="badge">Under review</span><img src="images/research/verdictbench_teaser.png" alt="VerdictBench pipeline diagram" /></div>
+							<div class="body">
+								<h3>VerdictBench: Can World Models Tell When a Policy Will Fail?</h3>
+								<p>A benchmark that tests whether a world model's success verdict can be trusted for an individual run. VerdictBench pairs each imagined verdict with the simulator outcome of the same run from the same initial state, under graded shifts in layout, dynamics, and sensing annotated by whether each shift is visible to the model. We find that verdicts accept nearly every run even when many accepted plans fail, and that closed-loop replanning can hide these errors.</p>
+								<p class="role">Sep 2026 to present, Research Assistant, University of Washington, supervised by Dr. Luyao Niu.</p>
+							</div>
+						</article>
 
-						<div class="research-item">
-							<h3>MPAIL2 Real-World Deployment on SO-101</h3>
-							<p>Built the hardware wrapper and multi-stream observation alignment pipeline for training an IRL-based world-model algorithm on a real arm.</p>
-							<p class="role">Mar to Aug 2026, UW Robot Learning Lab. My contribution: the real-arm deployment. Based on work: <a href="https://arxiv.org/abs/2602.24121" target="_blank">Paper</a>. <a href="https://github.com/UWRobotLearning/mpail2/tree/so-101" target="_blank">Code</a></p>
-						</div>
+												<article class="research-item">
+							<!-- arXiv link TBD -->
+							<div class="thumb"><span class="badge">Under review</span><img class="contain" src="images/research/tact_teaser.png" alt="TACT method diagram" /></div>
+							<div class="body">
+								<h3>Tracking Asking Cost over Time: Learning When to Ask Each User in Embodied Agents</h3>
+								<p>A lightweight reward-learning framework that lets a robot learn, for each user, when asking for clarification is worth the interruption. TACT estimates the utility of asking or acting from user context and interaction feedback, and replaces a fixed interruption cost with a learned, user-specific one. It updates passively from ordinary interaction and needs only a small amount of data and computation.</p>
+								<p class="role">Jan 2026 to present, lead researcher, with early-stage input from Fan Zhang.</p>
+								<div class="links"><a href="https://github.com/Ghosty2003/TACT" target="_blank">Code</a></div>
+							</div>
+						</article>
 
-						<div class="research-item">
-							<h3>AV-Phys Bench</h3>
-							<p>AV-Phys Bench evaluates whether joint audio-video generation models understand real-world physics, rather than just producing plausible-looking sounds and frames. It tests Steady State, Event Transition, and Environment Transition scenes on five dimensions of semantic and physical commonsense.</p>
-							<p class="role">Mar to May 2026, co-author. My contribution: benchmark design, rubric refinement for inter-annotator consistency, data collection and annotation verification. <a href="https://doi.org/10.48550/arXiv.2605.07061" target="_blank">Paper</a></p>
-						</div>
+												<article class="research-item">
+							<div class="thumb"><span class="badge">Deployment</span><img src="images/research/mpail2_teaser.jpg" alt="SO-101 robotic arm holding a blue block" /></div>
+							<div class="body">
+								<h3>MPAIL2 Real-World Deployment on SO-101</h3>
+								<p>Deployed an inverse reinforcement learning-based framework on a physical SO-101 robotic arm, integrating camera observations, joint-level control, and online training. Addressed hardware limitations and training instability through sensor alignment, signal filtering, and systematic debugging of robot behavior and control logs.</p>
+								<p class="role">Mar to Aug 2026, UW Robot Learning Lab.</p>
+								<div class="links"><span class="links-label">Based on work:</span> <a href="https://arxiv.org/abs/2602.24121" target="_blank">Paper</a><a href="https://github.com/UWRobotLearning/mpail2/tree/so-101" target="_blank">Code</a></div>
+							</div>
+						</article>
 
-						<div class="research-item">
-							<h3>Algorithm Structure for Real-time General Game Playing Agents</h3>
-							<p>General Game Playing studies AI agents that play unfamiliar games by reading only the rules at runtime, with no human intervention. Prior work has focused on turn-based games using generic heuristics or Monte Carlo/UCT search, but real-time games now dominate the market. This paper evaluates whether existing GGP algorithms can be adapted to real-time play and proposes a dual-server (strategy + acting) architecture to close the gap.</p>
-							<p class="role">2022, independent research. My contribution: Sole author. Conducted the literature review and proposed the dual-server architecture, improving breadth and efficiency to better mimic human performance. <a href="https://www.researchgate.net/publication/372214848_Algorithm_structure_for_real-time_general_game_playing_agents" target="_blank">Paper</a></p>
-						</div>
+												<article class="research-item">
+							<div class="thumb"><span class="badge">NeurIPS 2026</span><img src="images/research/avphys_teaser.jpg" alt="AV-Phys Bench example prompts with generated videos from two models" /></div>
+							<div class="body">
+								<h3>AV-Phys Bench</h3>
+								<p>AV-Phys Bench evaluates whether joint audio-video generation models understand real-world physics, rather than just producing plausible-looking sounds and frames. It tests Steady State, Event Transition, and Environment Transition scenes on five dimensions of semantic and physical commonsense.</p>
+								<p class="role">Mar to May 2026, co-author. My contribution: benchmark design, rubric refinement for inter-annotator consistency, data collection and annotation verification.</p>
+								<div class="links"><a href="https://doi.org/10.48550/arXiv.2605.07061" target="_blank">Paper</a></div>
+							</div>
+						</article>
 
-						<div class="research-item">
-							<h3>WM-Verdict: Benchmarking the Reliability of World-Model Verdicts about Policies</h3>
-							<p>A benchmark testing whether world models correctly predict policy success, pairing imagined rollouts with simulator ground truth from identical start states. I lead the experiment design and built the shared evaluation infrastructure. Aggregate estimates track ground truth, while per-start verdicts are much less reliable.</p>
-							<p class="role">Sep 2026 to present, Research Assistant, UW. Advisor: Prof. Luyao Niu.</p>
-						</div>
+												<article class="research-item">
+							<div class="body">
+								<h3>SAFEWORLD</h3>
+								<p>An exploratory safety framework built on a frozen world model, reasoning over RSSM latent transitions and integrating DreamerV3 and TD-MPC2 toward sim-to-real deployment from Isaac Lab to the SO-101 arm.</p>
+								<p class="role">Mar 2026 to present, collaborator. Ongoing.</p>
+							</div>
+						</article>
 
-						<div class="research-item">
-							<h3>SAFEWORLD</h3>
-							<p>A safety verification framework built on a frozen world model, reasoning over RSSM latent transitions and integrating DreamerV3 and TD-MPC2 toward sim-to-real deployment from Isaac Lab to the SO-101 arm.</p>
-							<p class="role">Mar 2026 to present, collaborator. Ongoing.</p>
-						</div>
+					</div>
 
-						<div class="research-item">
-							<h3>Long-tail Bias Mitigation in HOI Detection</h3>
-							<p>Undergraduate thesis. A QPIC-based framework with affordance-transfer-inspired enhancement and teacher-guided pseudo-labeling for Human-Object Interaction detection. It improves overall mAP by 1.6% and tail-class accuracy by 5.1% to 6.3% on V-COCO.</p>
-							<p class="role">Dec 2024 to May 2025, Tongji University.</p>
-						</div>
+					<h3 class="section-title">Earlier Research</h3>
+					<div class="research-list">
+
+												<article class="research-item">
+							<div class="body">
+								<h3>Long-tail Bias Mitigation in HOI Detection</h3>
+								<p>Undergraduate thesis. A QPIC-based framework with affordance-transfer-inspired enhancement and teacher-guided pseudo-labeling for Human-Object Interaction detection. It improves overall mAP by 1.6% and tail-class accuracy by 5.1% to 6.3% on V-COCO.</p>
+								<p class="role">Dec 2024 to May 2025, Tongji University.</p>
+							</div>
+						</article>
+
+												<article class="research-item">
+							<div class="body">
+								<h3>Algorithm Structure for Real-time General Game Playing Agents</h3>
+								<p>General Game Playing studies AI agents that play unfamiliar games by reading only the rules at runtime, with no human intervention. Prior work has focused on turn-based games using generic heuristics or Monte Carlo/UCT search, but real-time games now dominate the market. This paper evaluates whether existing GGP algorithms can be adapted to real-time play and proposes a dual-server (strategy + acting) architecture to close the gap.</p>
+								<p class="role">2022, independent research. My contribution: Sole author. Conducted the literature review and proposed the dual-server architecture, improving breadth and efficiency to better mimic human performance.</p>
+								<div class="links"><a href="https://www.researchgate.net/publication/372214848_Algorithm_structure_for_real-time_general_game_playing_agents" target="_blank">Paper</a></div>
+							</div>
+						</article>
 					</div>
 				</div>
 
